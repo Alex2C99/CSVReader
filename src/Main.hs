@@ -1,10 +1,10 @@
 module Main where
 
-import System.Environment
-import CsvRead
-import JSONWrite
-import Client
-import Util
+import           Client
+import           CsvRead
+import           JSONWrite
+import           System.Environment
+import           Util
 
 main :: IO ()
 main = do
