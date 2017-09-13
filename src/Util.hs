@@ -1,5 +1,7 @@
 module Util where
 
+import Data.Char
+
 split :: Char -> String -> [String]
 split ch = split' ch []
    where 
@@ -13,3 +15,13 @@ outMaybe :: (a -> IO ()) -> Maybe a -> IO ()
 outMaybe f (Just a) = f a
 outMaybe _ Nothing = return ()
 
+jwrap :: String -> String -> String
+jwrap tag val = "\"" ++ tag ++ "\": \"" ++ val ++ "\""
+
+screen :: Char -> String -> String
+screen ch [] = []
+screen ch (h : cs) 
+  | h == ch =  chr 92 : ch : screen ch cs
+  | otherwise = h : screen ch cs
+
+screenQuote = screen '"'

@@ -2,6 +2,7 @@ module Client where
 
 import CsvRead
 import JSONWrite
+import Util
 
 data Client = UL { cusnum :: Int, 
                    inn    :: String, 
