@@ -25,3 +25,8 @@ screen ch (h : cs)
   | otherwise = h : screen ch cs
 
 screenQuote = screen '"'
+
+readInt :: String -> Int
+readInt s = case reads s of
+  [(x,_)] -> x
+  [] -> 0
