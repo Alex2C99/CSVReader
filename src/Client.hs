@@ -4,14 +4,14 @@ import           CsvRead
 import           JSONWrite
 import           Util
 
-data Client = 
-       UL { 
+data Client =
+       UL {
          cusnum :: Int,
          inn    :: String,
          name   :: String
        }
-            | 
-       FL { 
+            |
+       FL {
          cusnum   :: Int,
          passpSer :: String,
          passpNum :: String,
@@ -38,13 +38,13 @@ instance WriteJSON Client where
   json cl@UL{} = "{\"Client\": {" ++
           jwrap "Type" "UL" ++ ", " ++
           jwrap "ID" (show $ cusnum cl)  ++ ", " ++
-          jwrap "INN" (screenQuote $ inn cl)  ++ ", " ++
-          jwrap "Name" (screenQuote $ name cl)  ++
+          jwrap "INN" (inn cl)  ++ ", " ++
+          jwrap "Name" (name cl)  ++
           "}}"
 
   json cl@FL{} = "{\"Client\": {" ++
           jwrap "Type" "FL" ++ ", " ++
           jwrap "ID" (show $ cusnum cl)  ++ ", " ++
-          jwrap "Passport" (screenQuote (passpSer cl) ++ " " ++ screenQuote (passpNum cl))  ++ ", " ++
-          jwrap "Name" (screenQuote $ name cl)  ++
+          jwrap "Passport" (passpSer cl ++ " " ++ passpNum cl)  ++ ", " ++
+          jwrap "Name" (name cl)  ++
           "}}"

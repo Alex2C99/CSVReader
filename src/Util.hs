@@ -16,7 +16,7 @@ outMaybe f (Just a) = f a
 outMaybe _ Nothing  = return ()
 
 jwrap :: String -> String -> String
-jwrap tag val = "\"" ++ tag ++ "\": \"" ++ val ++ "\""
+jwrap tag val = "\"" ++ screenQuote tag ++ "\": \"" ++ screenQuote val ++ "\""
 
 screen :: Char -> String -> String
 screen ch [] = []
@@ -24,9 +24,10 @@ screen ch (h : cs)
   | h == ch =  chr 92 : ch : screen ch cs
   | otherwise = h : screen ch cs
 
+screenQuote :: String -> String
 screenQuote = screen '"'
 
 readInt :: String -> Int
 readInt s = case reads s of
   [(x,_)] -> x
-  [] -> 0
+  []      -> 0
