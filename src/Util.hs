@@ -31,3 +31,6 @@ readInt :: String -> Int
 readInt s = case reads s of
   [(x,_)] -> x
   []      -> 0
+
+mapIf :: (a -> Bool) -> (a -> b) -> (a -> b) -> [a] -> [b]
+mapIf cond ifTrue ifFalse = map (\a -> if cond a then ifTrue a else ifFalse a)
